@@ -1,0 +1,25 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run app-MD",
+      "type": "node",
+      "request": "launch",
+      "program": "${workspaceFolder}/manual-md-app-approuter/node_modules/@sap/html5-repo-mock/index.js",
+      "args": [
+        "--standalone",
+        "/msapMD/index.html",
+        "--ui5",
+        "{\"version\":\".\"}"
+      ],
+      "cwd": "${workspaceFolder}/MD",
+      "env": {
+        "PORT": "6004",
+        "MOCK_LOOKUP_DIRS": "[\"webapp\"]",
+        "run.config": "{\"handlerId\":\"ui5_run_config_handler_id\",\"runnableId\":\"/home/user/projects/manual_md_app/MD\"}"
+      },
+      "envFile": "${workspaceFolder}/MD/.env1",
+      "preLaunchTask": "Build manual_md_app"
+    }
+  ]
+}

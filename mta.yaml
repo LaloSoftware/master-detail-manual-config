@@ -1,0 +1,56 @@
+_schema-version: "3.2"
+ID: manual_md_app
+version: 0.0.1
+modules:
+- name: manual-md-app-approuter
+  type: approuter.nodejs
+  path: manual-md-app-approuter
+  requires:
+  - name: manual_md_app_html_repo_runtime
+  - name: dest_manual_md_app
+  parameters:
+    disk-quota: 256M
+    memory: 256M
+- name: manual_md_app_ui_deployer
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: manual_md_app_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - MD-content.zip
+      name: MD
+      target-path: resources/
+- name: MD
+  type: html5
+  path: MD
+  build-parameters:
+    builder: custom
+    commands:
+    - npm run build
+    supported-platforms: []
+resources:
+- name: manual_md_app_html_repo_runtime
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-runtime
+- name: manual_md_app_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-plan: app-host
+- name: dest_manual_md_app
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: destination
+    service-plan: lite
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm install
