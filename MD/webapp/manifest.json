@@ -103,6 +103,21 @@
           "target": [
             "TargetMain"
           ]
+        },
+        {
+            "name": "master",
+            "pattern": "",
+            "target" : [
+                "TargetMaster"
+            ]
+        },
+        {
+            "name": "detail",
+            "pattern": "product/{productId}",
+            "target" : [
+                "TargetMaster",
+                "TargetDetail"
+            ]
         }
       ],
       "targets": {
@@ -112,6 +127,20 @@
           "clearControlAggregation": false,
           "viewId": "Main",
           "viewName": "Main"
+        },
+        "TargetMaster" : {
+            "viewType": "XML",
+            "transition": "slide",
+            "clearControlAggregation": false,
+            "viewName": "Master",
+            "viewLevel": 1
+        },
+        "TargetDetail": {
+            "viewType": "XML",
+            "transition": "slide",
+            "clearControlAggregation": false,
+            "viewName": "Detail",
+            "viewLevel": 2
         }
       }
     }

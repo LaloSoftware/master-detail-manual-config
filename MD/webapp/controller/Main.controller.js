@@ -1,15 +1,12 @@
 sap.ui.define([
 		"sap/ui/core/mvc/Controller"
 	],
-	/**
-     * @param {typeof sap.ui.core.mvc.Controller} Controller
-     */
 	function (Controller) {
 		"use strict";
 
 		return Controller.extend("msap.MD.controller.Main", {
 			onInit: function () {
-
+                console.log("Hello from Main Page");
 			}
 		});
 	});
